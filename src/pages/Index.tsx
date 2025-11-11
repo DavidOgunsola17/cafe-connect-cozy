@@ -1,91 +1,102 @@
-import { Navigation } from "@/components/Navigation";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
-import { Coffee, MessageSquare, Users, Sparkles } from "lucide-react";
+import { Coffee } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function Index() {
-  const navigate = useNavigate();
+  const options = [
+    "discover career paths in tech",
+    "connect with mentors and peers",
+    "join topic-based communities",
+    "practice networking skills",
+    "explore industry spotlights",
+    "build meaningful connections",
+  ];
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
-      
-      {/* Hero Section */}
-      <div className="pt-32 pb-20 px-6">
-        <div className="container mx-auto max-w-5xl text-center">
-          <div className="animate-fade-in">
-            <div className="mb-6 flex justify-center">
-              <Coffee className="w-16 h-16 text-accent animate-float" />
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        {/* Left Content Section */}
+        <div className="flex-1 flex items-center justify-center p-8 lg:p-12">
+          <div className="max-w-2xl w-full space-y-8">
+            {/* Hero Section */}
+            <div className="space-y-6 animate-fade-in">
+              <div className="flex items-center gap-3 mb-4">
+                <Coffee className="w-8 h-8 text-accent animate-float" />
+              </div>
+              
+              <h1 className="text-6xl lg:text-7xl font-bold text-foreground leading-tight glow-text uppercase">
+                network from the best,
+                <br />
+                be your best.
+              </h1>
+              
+              <p className="text-xl text-muted-foreground tracking-wide">
+                get unlimited access to cozy networking spaces.
+              </p>
             </div>
-            <h1 className="text-7xl md:text-8xl font-semibold text-foreground mb-6 glow-text">
-              coffeechat
-            </h1>
-            <p className="text-2xl text-muted-foreground mb-12 tracking-wide">
-              networking, reimagined for gen z.
-            </p>
-            
-            <div className="flex flex-wrap items-center justify-center gap-4 mb-16">
-              <Button 
-                onClick={() => navigate("/cafes")}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl px-8 py-6 text-lg soft-transition"
-              >
-                explore cafés
-              </Button>
-              <Button 
-                onClick={() => navigate("/lounges")}
-                variant="outline"
-                className="border-border bg-card hover:bg-secondary text-foreground rounded-xl px-8 py-6 text-lg soft-transition"
-              >
-                join a lounge
-              </Button>
-              <Button 
-                onClick={() => navigate("/spotlight")}
-                variant="outline"
-                className="border-border bg-card hover:bg-secondary text-foreground rounded-xl px-8 py-6 text-lg soft-transition"
-              >
-                spotlight sessions
-              </Button>
+
+            {/* Divider */}
+            <div className="w-12 h-1 bg-accent"></div>
+
+            {/* Question Section */}
+            <div className="space-y-4">
+              <h2 className="text-2xl font-medium text-foreground">
+                what brings you to coffeechat today?
+              </h2>
+              
+              <div className="space-y-3">
+                {options.map((option, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-3 p-4 rounded-lg bg-card/50 border border-border hover:bg-card hover:border-accent/30 transition-all cursor-pointer group"
+                    style={{ animationDelay: `${index * 0.1}s` }}
+                  >
+                    <Checkbox 
+                      id={`option-${index}`}
+                      className="border-muted-foreground data-[state=checked]:bg-accent data-[state=checked]:border-accent"
+                    />
+                    <label
+                      htmlFor={`option-${index}`}
+                      className="text-base text-foreground cursor-pointer flex-1 group-hover:text-accent transition-colors"
+                    >
+                      {option}
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
+        </div>
 
-          {/* Features Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mt-20">
-            <div className="bg-card rounded-2xl border border-border p-8 card-glow animate-slide-up hover:border-accent transition-colors">
-              <MessageSquare className="w-12 h-12 text-accent mb-4 mx-auto" />
-              <h3 className="text-xl font-medium text-foreground mb-3">private cafés</h3>
-              <p className="text-muted-foreground">
-                your own cozy corner for intimate conversations and connections
-              </p>
+        {/* Right Image Grid Section */}
+        <div className="flex-1 lg:min-h-screen p-4 lg:p-8">
+          <div className="h-full grid grid-cols-2 gap-4">
+            <div className="space-y-4">
+              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-coffee-medium to-coffee-dark overflow-hidden card-glow">
+                <div className="w-full h-full flex items-center justify-center text-6xl">☕</div>
+              </div>
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-accent/20 to-coffee-medium overflow-hidden card-glow">
+                <div className="w-full h-full flex items-center justify-center text-6xl">💬</div>
+              </div>
             </div>
-
-            <div 
-              className="bg-card rounded-2xl border border-border p-8 card-glow animate-slide-up hover:border-accent transition-colors"
-              style={{ animationDelay: "0.1s" }}
-            >
-              <Users className="w-12 h-12 text-accent mb-4 mx-auto" />
-              <h3 className="text-xl font-medium text-foreground mb-3">topic lounges</h3>
-              <p className="text-muted-foreground">
-                join communities around tech, design, business, and more
-              </p>
-            </div>
-
-            <div 
-              className="bg-card rounded-2xl border border-border p-8 card-glow animate-slide-up hover:border-accent transition-colors"
-              style={{ animationDelay: "0.2s" }}
-            >
-              <Sparkles className="w-12 h-12 text-accent mb-4 mx-auto" />
-              <h3 className="text-xl font-medium text-foreground mb-3">spotlight sessions</h3>
-              <p className="text-muted-foreground">
-                learn from mentors and industry leaders in live sessions
-              </p>
+            
+            <div className="space-y-4 pt-8">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-coffee-light to-accent/30 overflow-hidden card-glow">
+                <div className="w-full h-full flex items-center justify-center text-6xl">🎯</div>
+              </div>
+              <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-coffee-medium/80 to-coffee-dark overflow-hidden card-glow">
+                <div className="w-full h-full flex items-center justify-center text-6xl">✨</div>
+              </div>
+              <div className="aspect-[3/2] rounded-2xl bg-gradient-to-br from-accent/10 to-coffee-medium overflow-hidden card-glow">
+                <div className="w-full h-full flex items-center justify-center text-6xl">🌟</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       {/* Footer */}
-      <div className="border-t border-border py-8 px-6">
-        <div className="container mx-auto text-center">
+      <div className="border-t border-border py-6 px-8">
+        <div className="text-center">
           <p className="text-muted-foreground text-sm">
             take a seat — conversations start here.
           </p>

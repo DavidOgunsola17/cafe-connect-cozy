@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigation } from "@/components/Navigation";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar, MessageCircle, Users } from "lucide-react";
@@ -46,10 +46,9 @@ export default function Spotlight() {
   const currentMentor = mentors.find(m => m.id === selectedMentor);
 
   if (selectedMentor && !isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <div className="pt-24 pb-12 px-6">
+  return (
+    <div className="min-h-screen bg-background p-8">
+        <div className="pb-12 px-6">
           <div className="container mx-auto max-w-md">
             <div className="animate-fade-in">
               <div className="text-center mb-8">
@@ -94,9 +93,8 @@ export default function Spotlight() {
 
   if (selectedMentor && isAuthenticated && currentMentor) {
     return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <div className="pt-24 pb-12 px-6">
+      <div className="min-h-screen bg-background p-8">
+        <div className="pb-12 px-6">
           <div className="container mx-auto max-w-6xl">
             <div className="animate-fade-in">
               <div className="flex items-center justify-between mb-8">
@@ -167,9 +165,8 @@ export default function Spotlight() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <div className="pt-24 pb-12 px-6">
+    <div className="min-h-screen bg-background p-8">
+      <div className="pb-12 px-6">
         <div className="container mx-auto max-w-6xl">
           <div className="animate-fade-in">
             <div className="text-center mb-12">

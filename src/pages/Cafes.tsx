@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigation } from "@/components/Navigation";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Send } from "lucide-react";
@@ -23,10 +23,9 @@ export default function Cafes() {
   ];
 
   if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-background">
-        <Navigation />
-        <div className="pt-24 pb-12 px-6">
+  return (
+    <div className="min-h-screen bg-background p-8">
+      <div className="pb-12 px-6">
           <div className="container mx-auto max-w-md">
             <div className="animate-fade-in">
               <div className="text-center mb-8">
@@ -61,9 +60,8 @@ export default function Cafes() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <div className="pt-24 pb-12 px-6">
+    <div className="min-h-screen bg-background p-8">
+      <div className="pb-12 px-6">
         <div className="container mx-auto max-w-4xl">
           <div className="animate-fade-in">
             <div className="text-center mb-8">
