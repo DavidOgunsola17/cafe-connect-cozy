@@ -7,7 +7,7 @@ import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/s
 import { AppSidebar } from "@/components/AppSidebar";
 import Index from "./pages/Index";
 import Cafes from "./pages/Cafes";
-import Lounges from "./pages/Lounges";
+import FindMatch from "./pages/FindMatch";
 import Spotlight from "./pages/Spotlight";
 import NotFound from "./pages/NotFound";
 
@@ -29,7 +29,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/cafes" element={<Cafes />} />
-                <Route path="/lounges" element={<Lounges />} />
+                <Route path="/find-match" element={<FindMatch />} />
                 <Route path="/spotlight" element={<Spotlight />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
