@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, Briefcase, MapPin, User } from "lucide-react";
+import { Search, Briefcase, User, LayoutGrid, TableIcon, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -18,6 +18,15 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 const mockProfiles = [
   {
@@ -87,6 +96,7 @@ export default function FindMatch() {
   const [selectedProfile, setSelectedProfile] = useState<typeof mockProfiles[0] | null>(null);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [invitedName, setInvitedName] = useState("");
+  const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
 
   const handleSendInvite = (name: string) => {
     setInvitedName(name);
@@ -107,13 +117,38 @@ export default function FindMatch() {
       <div className="pb-12 px-6">
         <div className="container mx-auto max-w-7xl">
           {/* Header */}
-          <div className="animate-fade-in pt-8 pb-8">
-            <h1 className="text-5xl font-semibold text-foreground mb-3">
-              find your next coffeechat ☕
-            </h1>
-            <p className="text-muted-foreground text-lg">
-              curated matches based on your interests and goals.
-            </p>
+          <div className="animate-fade-in pt-8 pb-8 flex items-start justify-between">
+            <div>
+              <h1 className="text-5xl font-semibold text-foreground mb-3">
+                find your next coffeechat ☕
+              </h1>
+              <p className="text-muted-foreground text-lg">
+                browse curated matches, your way.
+              </p>
+            </div>
+            <ToggleGroup
+              type="single"
+              value={viewMode}
+              onValueChange={(value) => value && setViewMode(value as "grid" | "table")}
+              className="bg-card border border-border rounded-xl p-1"
+            >
+              <ToggleGroupItem
+                value="grid"
+                aria-label="Grid view"
+                className="rounded-lg data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              >
+                <LayoutGrid className="w-4 h-4 mr-2" />
+                Grid View
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value="table"
+                aria-label="Table view"
+                className="rounded-lg data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+              >
+                <TableIcon className="w-4 h-4 mr-2" />
+                Table View
+              </ToggleGroupItem>
+            </ToggleGroup>
           </div>
 
           {/* Filters & Search */}
@@ -157,58 +192,137 @@ export default function FindMatch() {
             </div>
           </div>
 
-          {/* Match Cards Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProfiles.map((profile, idx) => (
-              <div
-                key={profile.id}
-                className="bg-card rounded-2xl border border-border p-6 card-glow hover:border-accent transition-all cursor-pointer group animate-slide-up"
-                style={{ animationDelay: `${idx * 0.05}s` }}
-                onClick={() => setSelectedProfile(profile)}
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <Avatar className="w-14 h-14">
-                    <AvatarImage src={profile.avatar} />
-                    <AvatarFallback className="bg-secondary text-foreground">
-                      {profile.name.split(" ").map((n) => n[0]).join("").toUpperCase()}
-                    </AvatarFallback>
-                  </Avatar>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="text-xl font-medium text-foreground mb-1">
-                      {profile.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">{profile.role}</p>
-                  </div>
-                </div>
-
-                <p className="text-foreground/80 text-sm mb-4 line-clamp-2">
-                  {profile.tagline}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {profile.interests.map((interest) => (
-                    <Badge
-                      key={interest}
-                      variant="secondary"
-                      className="bg-secondary/50 text-foreground border-0"
-                    >
-                      {interest}
-                    </Badge>
-                  ))}
-                </div>
-
-                <Button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleSendInvite(profile.name);
-                  }}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl soft-transition group-hover:bg-accent group-hover:text-accent-foreground"
+          {/* Grid View */}
+          {viewMode === "grid" && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+              {filteredProfiles.map((profile, idx) => (
+                <div
+                  key={profile.id}
+                  className="bg-card rounded-2xl border border-border p-6 card-glow hover:border-accent transition-all cursor-pointer group animate-slide-up"
+                  style={{ animationDelay: `${idx * 0.05}s` }}
+                  onClick={() => setSelectedProfile(profile)}
                 >
-                  send coffeechat
-                </Button>
-              </div>
-            ))}
-          </div>
+                  <div className="flex items-start gap-4 mb-4">
+                    <Avatar className="w-14 h-14">
+                      <AvatarImage src={profile.avatar} />
+                      <AvatarFallback className="bg-secondary text-foreground">
+                        {profile.name.split(" ").map((n) => n[0]).join("").toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-xl font-medium text-foreground mb-1">
+                        {profile.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">{profile.role}</p>
+                    </div>
+                  </div>
+
+                  <p className="text-foreground/80 text-sm mb-4 line-clamp-2">
+                    {profile.tagline}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {profile.interests.map((interest) => (
+                      <Badge
+                        key={interest}
+                        variant="secondary"
+                        className="bg-secondary/50 text-foreground border-0"
+                      >
+                        {interest}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  <Button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleSendInvite(profile.name);
+                    }}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl soft-transition group-hover:bg-accent group-hover:text-accent-foreground"
+                  >
+                    send coffeechat
+                  </Button>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Table View */}
+          {viewMode === "table" && (
+            <div className="bg-card rounded-2xl border border-border overflow-hidden animate-fade-in">
+              <Table>
+                <TableHeader>
+                  <TableRow className="hover:bg-transparent border-border">
+                    <TableHead className="text-foreground font-medium">Name</TableHead>
+                    <TableHead className="text-foreground font-medium">Role / Title</TableHead>
+                    <TableHead className="text-foreground font-medium">Interests</TableHead>
+                    <TableHead className="text-foreground font-medium">Status</TableHead>
+                    <TableHead className="text-foreground font-medium w-[100px]">Action</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredProfiles.map((profile) => (
+                    <TableRow
+                      key={profile.id}
+                      className="cursor-pointer hover:bg-muted/50 transition-colors border-border"
+                      onClick={() => setSelectedProfile(profile)}
+                    >
+                      <TableCell>
+                        <div className="flex items-center gap-3">
+                          <Avatar className="w-10 h-10">
+                            <AvatarImage src={profile.avatar} />
+                            <AvatarFallback className="bg-secondary text-foreground text-sm">
+                              {profile.name.split(" ").map((n) => n[0]).join("").toUpperCase()}
+                            </AvatarFallback>
+                          </Avatar>
+                          <span className="text-foreground font-medium">{profile.name}</span>
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-foreground/80">{profile.role}</TableCell>
+                      <TableCell>
+                        <div className="flex flex-wrap gap-1">
+                          {profile.interests.slice(0, 2).map((interest) => (
+                            <Badge
+                              key={interest}
+                              variant="secondary"
+                              className="bg-secondary/50 text-foreground border-0 text-xs"
+                            >
+                              {interest}
+                            </Badge>
+                          ))}
+                          {profile.interests.length > 2 && (
+                            <Badge
+                              variant="secondary"
+                              className="bg-secondary/50 text-foreground border-0 text-xs"
+                            >
+                              +{profile.interests.length - 2}
+                            </Badge>
+                          )}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        <Badge variant="secondary" className="bg-accent/20 text-accent border-0">
+                          available
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleSendInvite(profile.name);
+                          }}
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg"
+                        >
+                          <Send className="w-4 h-4" />
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </div>
+          )}
 
           {filteredProfiles.length === 0 && (
             <div className="text-center py-12">
