@@ -1,4 +1,4 @@
-import { Coffee, MessageSquare, Users, Sparkles } from "lucide-react";
+import { Coffee, MessageSquare, Heart, Sparkles } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import {
   Sidebar,
@@ -13,7 +13,7 @@ import {
 
 const items = [
   { title: "cafés", url: "/cafes", icon: MessageSquare },
-  { title: "lounges", url: "/lounges", icon: Users },
+  { title: "find a match", url: "/find-match", icon: Heart },
   { title: "spotlight", url: "/spotlight", icon: Sparkles },
 ];
 
