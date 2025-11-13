@@ -8,6 +8,9 @@ import { AppSidebar } from "@/components/AppSidebar";
 import Index from "./pages/Index";
 import Cafes from "./pages/Cafes";
 import FindMatch from "./pages/FindMatch";
+import Meetings from "./pages/Meetings";
+import Opportunities from "./pages/Opportunities";
+import OpportunityDetails from "./pages/OpportunityDetails";
 import Spotlight from "./pages/Spotlight";
 import Scheduler from "./pages/Scheduler";
 import NotFound from "./pages/NotFound";
@@ -31,6 +34,9 @@ const App = () => (
                 <Route path="/" element={<Index />} />
                 <Route path="/cafes" element={<Cafes />} />
                 <Route path="/find-match" element={<FindMatch />} />
+                <Route path="/meetings" element={<Meetings />} />
+                <Route path="/opportunities" element={<Opportunities />} />
+                <Route path="/opportunities/:id" element={<OpportunityDetails />} />
                 <Route path="/spotlight" element={<Spotlight />} />
                 <Route path="/scheduler" element={<Scheduler />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

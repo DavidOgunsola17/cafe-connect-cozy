@@ -1,4 +1,4 @@
-import { Coffee, MessageSquare, Heart, Sparkles } from "lucide-react";
+import { Coffee, MessageSquare, Heart, Sparkles, Calendar, Briefcase } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import {
   Sidebar,
@@ -14,6 +14,8 @@ import {
 const items = [
   { title: "cafés", url: "/cafes", icon: MessageSquare },
   { title: "find a match", url: "/find-match", icon: Heart },
+  { title: "meetings", url: "/meetings", icon: Calendar },
+  { title: "opportunities", url: "/opportunities", icon: Briefcase, badge: "new" },
   { title: "spotlight", url: "/spotlight", icon: Sparkles },
 ];
 
@@ -46,11 +48,16 @@ export function AppSidebar() {
                     <NavLink 
                       to={item.url} 
                       end 
-                      className="hover:bg-secondary/50 transition-colors"
+                      className="hover:bg-secondary/50 transition-colors relative"
                       activeClassName="bg-secondary text-accent font-medium"
                     >
                       <item.icon className="w-4 h-4" />
                       {!isCollapsed && <span>{item.title}</span>}
+                      {!isCollapsed && item.badge && (
+                        <span className="ml-auto text-[10px] bg-accent text-accent-foreground px-1.5 py-0.5 rounded-full">
+                          {item.badge}
+                        </span>
+                      )}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
