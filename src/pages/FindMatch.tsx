@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, Briefcase, User, LayoutGrid, TableIcon, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -92,6 +93,7 @@ const mockProfiles = [
 ];
 
 export default function FindMatch() {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedProfile, setSelectedProfile] = useState<typeof mockProfiles[0] | null>(null);
   const [showInviteModal, setShowInviteModal] = useState(false);
@@ -99,9 +101,7 @@ export default function FindMatch() {
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
 
   const handleSendInvite = (name: string) => {
-    setInvitedName(name);
-    setShowInviteModal(true);
-    setSelectedProfile(null);
+    navigate("/scheduler?mode=send");
   };
 
   const filteredProfiles = mockProfiles.filter((profile) =>

@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Cafes from "./pages/Cafes";
 import FindMatch from "./pages/FindMatch";
 import Spotlight from "./pages/Spotlight";
+import Scheduler from "./pages/Scheduler";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
                 <Route path="/cafes" element={<Cafes />} />
                 <Route path="/find-match" element={<FindMatch />} />
                 <Route path="/spotlight" element={<Spotlight />} />
+                <Route path="/scheduler" element={<Scheduler />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
