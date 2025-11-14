@@ -13,6 +13,7 @@ import Opportunities from "./pages/Opportunities";
 import OpportunityDetails from "./pages/OpportunityDetails";
 import Spotlight from "./pages/Spotlight";
 import Scheduler from "./pages/Scheduler";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,6 +40,7 @@ const App = () => (
                 <Route path="/opportunities/:id" element={<OpportunityDetails />} />
                 <Route path="/spotlight" element={<Spotlight />} />
                 <Route path="/scheduler" element={<Scheduler />} />
+                <Route path="/profile" element={<Profile />} />
                 {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                 <Route path="*" element={<NotFound />} />
               </Routes>

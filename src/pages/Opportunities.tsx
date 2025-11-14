@@ -148,18 +148,18 @@ export default function Opportunities() {
   };
 
   return (
-    <div className="min-h-screen bg-background p-6 md:p-8">
+    <div className="min-h-screen bg-background p-4 md:p-6 lg:p-8">
       <div className="container mx-auto max-w-6xl">
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-3xl font-medium text-foreground">
+        <div className="mb-6 md:mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-2">
+            <h1 className="text-2xl sm:text-3xl font-medium text-foreground">
               opportunities ✨
             </h1>
-            <Badge className="bg-accent/10 text-accent border-accent/20">
+            <Badge className="bg-accent/10 text-accent border-accent/20 w-fit">
               {filteredOpportunities.length} available
             </Badge>
           </div>
-          <p className="text-muted-foreground">
+          <p className="text-sm md:text-base text-muted-foreground">
             curated scholarships, internships, jobs, and programs
           </p>
         </div>
@@ -172,9 +172,9 @@ export default function Opportunities() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="bg-input border-border"
           />
-          <div className="flex flex-wrap gap-3">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3">
             <Select value={typeFilter} onValueChange={setTypeFilter}>
-              <SelectTrigger className="w-[180px] bg-input border-border">
+              <SelectTrigger className="w-full sm:w-[180px] bg-input border-border">
                 <SelectValue placeholder="type" />
               </SelectTrigger>
               <SelectContent className="bg-popover border-border">
@@ -187,7 +187,7 @@ export default function Opportunities() {
             </Select>
 
             <Select value={locationFilter} onValueChange={setLocationFilter}>
-              <SelectTrigger className="w-[180px] bg-input border-border">
+              <SelectTrigger className="w-full sm:w-[180px] bg-input border-border">
                 <SelectValue placeholder="location" />
               </SelectTrigger>
               <SelectContent className="bg-popover border-border">
@@ -198,7 +198,7 @@ export default function Opportunities() {
             </Select>
 
             <Select value={fieldFilter} onValueChange={setFieldFilter}>
-              <SelectTrigger className="w-[180px] bg-input border-border">
+              <SelectTrigger className="col-span-2 sm:col-span-1 sm:w-[180px] bg-input border-border">
                 <SelectValue placeholder="field" />
               </SelectTrigger>
               <SelectContent className="bg-popover border-border">
@@ -214,7 +214,7 @@ export default function Opportunities() {
         </div>
 
         {/* Opportunities Grid */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 md:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {filteredOpportunities.map((opp) => {
             const Icon = typeIcons[opp.type];
             return (

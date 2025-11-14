@@ -1,4 +1,4 @@
-import { Coffee, MessageSquare, Heart, Sparkles, Calendar, Briefcase } from "lucide-react";
+import { Coffee, MessageSquare, Heart, Sparkles, Calendar, Briefcase, User } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import {
   Sidebar,
@@ -17,6 +17,7 @@ const items = [
   { title: "meetings", url: "/meetings", icon: Calendar },
   { title: "opportunities", url: "/opportunities", icon: Briefcase, badge: "new" },
   { title: "spotlight", url: "/spotlight", icon: Sparkles },
+  { title: "profile", url: "/profile", icon: User },
 ];
 
 export function AppSidebar() {

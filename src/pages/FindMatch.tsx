@@ -117,12 +117,12 @@ export default function FindMatch() {
       <div className="pb-12 px-6">
         <div className="container mx-auto max-w-7xl">
           {/* Header */}
-          <div className="animate-fade-in pt-8 pb-8 flex items-start justify-between">
+          <div className="animate-fade-in pt-8 pb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
-              <h1 className="text-5xl font-semibold text-foreground mb-3">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-foreground mb-3">
                 find your next coffeechat ☕
               </h1>
-              <p className="text-muted-foreground text-lg">
+              <p className="text-muted-foreground text-base md:text-lg">
                 browse curated matches, your way.
               </p>
             </div>
@@ -130,23 +130,23 @@ export default function FindMatch() {
               type="single"
               value={viewMode}
               onValueChange={(value) => value && setViewMode(value as "grid" | "table")}
-              className="bg-card border border-border rounded-xl p-1"
+              className="bg-card border border-border rounded-xl p-1 w-full sm:w-auto"
             >
               <ToggleGroupItem
                 value="grid"
                 aria-label="Grid view"
-                className="rounded-lg data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                className="rounded-lg data-[state=on]:bg-primary data-[state=on]:text-primary-foreground flex-1 sm:flex-none"
               >
-                <LayoutGrid className="w-4 h-4 mr-2" />
-                Grid View
+                <LayoutGrid className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Grid View</span>
               </ToggleGroupItem>
               <ToggleGroupItem
                 value="table"
                 aria-label="Table view"
-                className="rounded-lg data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                className="rounded-lg data-[state=on]:bg-primary data-[state=on]:text-primary-foreground flex-1 sm:flex-none"
               >
-                <TableIcon className="w-4 h-4 mr-2" />
-                Table View
+                <TableIcon className="w-4 h-4 sm:mr-2" />
+                <span className="hidden sm:inline">Table View</span>
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
@@ -163,9 +163,9 @@ export default function FindMatch() {
                   className="pl-10 bg-card border-border text-foreground placeholder:text-muted-foreground rounded-xl h-12"
                 />
               </div>
-              <div className="flex gap-3">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <Select>
-                  <SelectTrigger className="w-[180px] bg-card border-border text-foreground rounded-xl h-12">
+                  <SelectTrigger className="w-full sm:w-[180px] bg-card border-border text-foreground rounded-xl h-12">
                     <Briefcase className="w-4 h-4 mr-2" />
                     <SelectValue placeholder="industry" />
                   </SelectTrigger>
@@ -178,7 +178,7 @@ export default function FindMatch() {
                 </Select>
 
                 <Select>
-                  <SelectTrigger className="w-[180px] bg-card border-border text-foreground rounded-xl h-12">
+                  <SelectTrigger className="w-full sm:w-[180px] bg-card border-border text-foreground rounded-xl h-12">
                     <User className="w-4 h-4 mr-2" />
                     <SelectValue placeholder="experience" />
                   </SelectTrigger>
@@ -194,7 +194,7 @@ export default function FindMatch() {
 
           {/* Grid View */}
           {viewMode === "grid" && (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 animate-fade-in">
               {filteredProfiles.map((profile, idx) => (
                 <div
                   key={profile.id}
