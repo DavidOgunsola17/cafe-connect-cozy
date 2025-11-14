@@ -69,26 +69,6 @@ export default function Profile() {
         )}
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
-        {stats.map((stat) => {
-          const Icon = stat.icon;
-          return (
-            <Card key={stat.label} className="card-glow">
-              <CardContent className="p-4 md:p-6">
-                <div className="flex items-center justify-between mb-2">
-                  <Icon className="h-5 w-5 text-muted-foreground" />
-                  <span className="text-2xl md:text-3xl font-light text-foreground">
-                    {stat.value}
-                  </span>
-                </div>
-                <p className="text-xs md:text-sm text-muted-foreground">{stat.label}</p>
-              </CardContent>
-            </Card>
-          );
-        })}
-      </div>
-
       {/* Profile Content */}
       <Tabs defaultValue="about" className="w-full">
         <TabsList className="w-full sm:w-auto">
@@ -266,6 +246,26 @@ export default function Profile() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+        {stats.map((stat) => {
+          const Icon = stat.icon;
+          return (
+            <Card key={stat.label} className="card-glow">
+              <CardContent className="p-4 md:p-6">
+                <div className="flex items-center justify-between mb-2">
+                  <Icon className="h-5 w-5 text-muted-foreground" />
+                  <span className="text-2xl md:text-3xl font-light text-foreground">
+                    {stat.value}
+                  </span>
+                </div>
+                <p className="text-xs md:text-sm text-muted-foreground">{stat.label}</p>
+              </CardContent>
+            </Card>
+          );
+        })}
+      </div>
     </main>
   );
 }
