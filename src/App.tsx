@@ -2,9 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { SidebarProvider, SidebarTrigger, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { User } from "lucide-react";
 import Index from "./pages/Index";
 import Cafes from "./pages/Cafes";
 import FindMatch from "./pages/FindMatch";
@@ -28,8 +30,14 @@ const App = () => (
           <div className="flex min-h-screen w-full">
             <AppSidebar />
             <SidebarInset className="flex-1">
-              <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b border-border bg-background/80 backdrop-blur-lg px-6">
+              <header className="sticky top-0 z-10 flex h-14 items-center justify-between gap-4 border-b border-border bg-background/80 backdrop-blur-lg px-6">
                 <SidebarTrigger />
+                <Link to="/profile" className="hover:opacity-80 transition-opacity">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" />
+                    <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
+                  </Avatar>
+                </Link>
               </header>
               <Routes>
                 <Route path="/" element={<Index />} />
