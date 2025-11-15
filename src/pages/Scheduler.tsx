@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { InviteCard } from "@/components/scheduler/InviteCard";
+import { ReceiveInviteCard } from "@/components/scheduler/ReceiveInviteCard";
 import { TimeSelector } from "@/components/scheduler/TimeSelector";
 import { MeetingConfirmation } from "@/components/scheduler/MeetingConfirmation";
 import { toast } from "sonner";
@@ -91,7 +92,7 @@ export default function Scheduler() {
                 </h1>
                 <p className="text-muted-foreground mt-1">
                   {mode === "send" 
-                    ? "choose a time that works for you" 
+                    ? "they'll select from your available times" 
                     : "select a time to meet"}
                 </p>
               </div>
@@ -105,18 +106,33 @@ export default function Scheduler() {
               )}
             </div>
 
-            <InviteCard
-              name={mockProfile.name}
-              role={mockProfile.role}
-              avatar={mockProfile.avatar}
-              bio={mockProfile.bio}
-              goal={mockProfile.goal}
-              aiMessage="hey! i noticed we're both interested in design systems and accessibility. would love to grab a virtual coffee and chat about your journey into product design. i'm currently exploring UX as a career path and would really value your perspective!"
-              timeSlots={availableSlots}
-              selectedSlot={selectedSlot}
-              onSelectSlot={handleSelectSlot}
-              onConfirm={handleConfirmInvite}
-            />
+{mode === "send" ? (
+              <InviteCard
+                name={mockProfile.name}
+                role={mockProfile.role}
+                avatar={mockProfile.avatar}
+                bio={mockProfile.bio}
+                goal={mockProfile.goal}
+                aiMessage="hey! i'd love to chat about your journey into design and share some tips that helped me. looking forward to our conversation over coffee ☕"
+                onConfirm={() => {
+                  toast.success("invite sent! they'll pick a time from your availability.");
+                  navigate("/meetings");
+                }}
+              />
+            ) : (
+              <ReceiveInviteCard
+                name={mockProfile.name}
+                role={mockProfile.role}
+                avatar={mockProfile.avatar}
+                bio={mockProfile.bio}
+                goal={mockProfile.goal}
+                aiMessage="hey! i noticed we're both interested in design systems and accessibility. would love to grab a virtual coffee and chat about your journey into product design. i'm currently exploring UX as a career path and would really value your perspective!"
+                timeSlots={availableSlots}
+                selectedSlot={selectedSlot}
+                onSelectSlot={handleSelectSlot}
+                onConfirm={handleConfirmInvite}
+              />
+            )}
           </div>
         )}
 
