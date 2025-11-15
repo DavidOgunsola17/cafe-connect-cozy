@@ -24,12 +24,17 @@ export function AppSidebar() {
   const isCollapsed = state === "collapsed";
 
   return (
-    <Sidebar className="border-r border-border bg-card">
+    <Sidebar className="border-r border-border bg-card hidden md:flex">
       <SidebarContent>
         {/* Logo Section */}
         <div className="p-6 border-b border-border">
           <div className="flex items-center gap-2">
-            <Coffee className="w-6 h-6 text-accent animate-float" />
+            <div className="relative w-6 h-6">
+              <Coffee className="w-6 h-6 text-accent animate-float" />
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10px] font-bold text-accent">
+                $
+              </span>
+            </div>
             {!isCollapsed && (
               <span className="text-xl font-semibold tracking-wide text-foreground">
                 coffeechat
