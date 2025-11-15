@@ -1,26 +1,39 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Calendar, Clock } from "lucide-react";
 
-interface InviteCardProps {
+interface TimeSlot {
+  id: string;
+  time: string;
+  date: string;
+}
+
+interface ReceiveInviteCardProps {
   name: string;
   role: string;
   avatar?: string;
   bio: string;
   goal?: string;
   aiMessage: string;
+  timeSlots: TimeSlot[];
+  selectedSlot?: string;
+  onSelectSlot: (slotId: string) => void;
   onConfirm: () => void;
 }
 
-export function InviteCard({
+export function ReceiveInviteCard({
   name,
   role,
   avatar,
   bio,
   goal,
   aiMessage,
+  timeSlots,
+  selectedSlot,
+  onSelectSlot,
   onConfirm,
-}: InviteCardProps) {
+}: ReceiveInviteCardProps) {
   return (
     <Card className="w-full max-w-2xl mx-auto card-glow border-border/40 bg-card/95 backdrop-blur">
       <CardHeader className="space-y-4">
@@ -54,12 +67,37 @@ export function InviteCard({
           </p>
         </div>
 
+        <div className="space-y-3">
+          <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <Calendar className="h-4 w-4" />
+            <span>select a time that works for you</span>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {timeSlots.map((slot) => (
+              <Button
+                key={slot.id}
+                variant={selectedSlot === slot.id ? "default" : "outline"}
+                className="justify-start h-auto py-3 px-4 soft-transition"
+                onClick={() => onSelectSlot(slot.id)}
+              >
+                <Clock className="h-4 w-4 mr-2 flex-shrink-0" />
+                <div className="text-left">
+                  <div className="font-medium">{slot.date}</div>
+                  <div className="text-xs opacity-80">{slot.time}</div>
+                </div>
+              </Button>
+            ))}
+          </div>
+        </div>
+
         <Button
           size="lg"
           className="w-full soft-transition"
+          disabled={!selectedSlot}
           onClick={onConfirm}
         >
-          send invite
+          confirm coffeechat
         </Button>
       </CardContent>
     </Card>
