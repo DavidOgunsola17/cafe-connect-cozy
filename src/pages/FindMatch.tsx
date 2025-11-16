@@ -28,6 +28,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import sarahChen from "@/assets/profiles/sarah-chen.jpg";
+import marcusWilliams from "@/assets/profiles/marcus-williams.jpg";
+import emmaRodriguez from "@/assets/profiles/emma-rodriguez.jpg";
+import alexKim from "@/assets/profiles/alex-kim.jpg";
+import jordanPatel from "@/assets/profiles/jordan-patel.jpg";
+import rileyMartinez from "@/assets/profiles/riley-martinez.jpg";
 
 const mockProfiles = [
   {
@@ -36,7 +42,7 @@ const mockProfiles = [
     role: "ux design student",
     tagline: "obsessed with design systems and early-morning espresso runs",
     interests: ["design", "startups", "mentorship"],
-    avatar: "",
+    avatar: sarahChen,
     bio: "sophomore at stanford studying HCI. looking to connect with designers and founders building consumer products.",
     topics: ["portfolio reviews", "design career paths", "breaking into tech"],
   },
@@ -46,7 +52,7 @@ const mockProfiles = [
     role: "software engineer",
     tagline: "building ai tools and helping students break into tech",
     interests: ["engineering", "ai/ml", "career advice"],
-    avatar: "",
+    avatar: marcusWilliams,
     bio: "senior engineer at a YC startup. love talking about tech careers, side projects, and the future of work.",
     topics: ["technical interviews", "resume tips", "open source contribution"],
   },
@@ -56,7 +62,7 @@ const mockProfiles = [
     role: "product manager",
     tagline: "bridging user needs and business goals, one coffee at a time",
     interests: ["product", "healthcare", "leadership"],
-    avatar: "",
+    avatar: emmaRodriguez,
     bio: "pm at a healthcare startup. passionate about mentorship and helping students navigate product careers.",
     topics: ["product thinking", "transitioning to pm", "healthcare tech"],
   },
@@ -66,7 +72,7 @@ const mockProfiles = [
     role: "marketing strategist",
     tagline: "storytelling through data and coffee-fueled campaigns",
     interests: ["marketing", "content", "analytics"],
-    avatar: "",
+    avatar: alexKim,
     bio: "growth marketer with a background in content creation. happy to chat about marketing careers and building personal brands.",
     topics: ["growth marketing", "content strategy", "social media"],
   },
@@ -76,17 +82,17 @@ const mockProfiles = [
     role: "business analyst",
     tagline: "crunching numbers and connecting dots in fintech",
     interests: ["finance", "consulting", "data"],
-    avatar: "",
+    avatar: jordanPatel,
     bio: "analyst at a fintech company. interested in helping students break into finance and consulting.",
     topics: ["case interviews", "financial modeling", "career switching"],
   },
   {
     id: 6,
-    name: "taylor nguyen",
+    name: "riley martinez",
     role: "frontend developer",
     tagline: "crafting delightful interfaces with react and good vibes",
     interests: ["development", "design", "web3"],
-    avatar: "",
+    avatar: rileyMartinez,
     bio: "self-taught developer building web3 products. love talking about coding journeys and remote work.",
     topics: ["learning to code", "freelancing", "web3 basics"],
   },

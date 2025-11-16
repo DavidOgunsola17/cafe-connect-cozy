@@ -2,6 +2,11 @@ import { Coffee, Sparkles, Calendar, Target, ArrowRight, Users, Briefcase } from
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
+import heroBackground from "@/assets/hero-background.jpg";
+import productPreview from "@/assets/product-preview.jpg";
+import featureAiMatching from "@/assets/feature-ai-matching.jpg";
+import featureScheduler from "@/assets/feature-scheduler.jpg";
+import featureOpportunities from "@/assets/feature-opportunities.jpg";
 
 export default function Index() {
   return (
@@ -29,8 +34,15 @@ export default function Index() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 lg:px-8">
-        <div className="container mx-auto max-w-6xl">
+      <section 
+        className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 lg:px-8 overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(${heroBackground})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center space-y-8 animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-card border border-border">
               <Sparkles className="w-4 h-4 text-accent" />
@@ -76,37 +88,55 @@ export default function Index() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            <Card className="p-8 space-y-4 hover:border-accent/50 transition-all card-glow">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-accent" />
+            <Card className="p-0 overflow-hidden hover:border-accent/50 transition-all card-glow">
+              <div className="aspect-video w-full overflow-hidden">
+                <img 
+                  src={featureAiMatching} 
+                  alt="AI matching feature illustration" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">ai matching</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                get paired with the right people based on your goals, interests, and career path. 
-                smart algorithms ensure quality connections.
-              </p>
+              <div className="p-6 space-y-3">
+                <h3 className="text-xl font-semibold text-foreground">ai matching</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  get paired with the right people based on your goals, interests, and career path. 
+                  smart algorithms ensure quality connections.
+                </p>
+              </div>
             </Card>
 
-            <Card className="p-8 space-y-4 hover:border-accent/50 transition-all card-glow">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-accent" />
+            <Card className="p-0 overflow-hidden hover:border-accent/50 transition-all card-glow">
+              <div className="aspect-video w-full overflow-hidden">
+                <img 
+                  src={featureScheduler} 
+                  alt="Calendar scheduler feature illustration" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">coffeechat invites</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                seamless scheduling with built-in calendar integration. 
-                send invites, pick times, and manage all your coffee chats in one place.
-              </p>
+              <div className="p-6 space-y-3">
+                <h3 className="text-xl font-semibold text-foreground">coffeechat invites</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  seamless scheduling with built-in calendar integration. 
+                  send invites, pick times, and manage all your coffee chats in one place.
+                </p>
+              </div>
             </Card>
 
-            <Card className="p-8 space-y-4 hover:border-accent/50 transition-all card-glow">
-              <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                <Briefcase className="w-6 h-6 text-accent" />
+            <Card className="p-0 overflow-hidden hover:border-accent/50 transition-all card-glow">
+              <div className="aspect-video w-full overflow-hidden">
+                <img 
+                  src={featureOpportunities} 
+                  alt="Opportunities feature illustration" 
+                  className="w-full h-full object-cover"
+                />
               </div>
-              <h3 className="text-xl font-semibold text-foreground">opportunities</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                discover curated scholarships, internships, and jobs. 
-                stay updated with opportunities that match your career goals.
-              </p>
+              <div className="p-6 space-y-3">
+                <h3 className="text-xl font-semibold text-foreground">opportunities</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  discover curated scholarships, internships, and jobs. 
+                  stay updated with opportunities that match your career goals.
+                </p>
+              </div>
             </Card>
           </div>
         </div>
@@ -173,30 +203,13 @@ export default function Index() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <Card className="aspect-video rounded-2xl bg-gradient-to-br from-coffee-medium to-coffee-dark overflow-hidden card-glow">
-                <div className="w-full h-full flex flex-col items-center justify-center text-center p-8 space-y-4">
-                  <Users className="w-16 h-16 text-accent" />
-                  <p className="text-lg text-foreground">discover amazing people</p>
-                </div>
-              </Card>
-              <Card className="aspect-video rounded-2xl bg-gradient-to-br from-accent/20 to-coffee-medium overflow-hidden card-glow">
-                <div className="w-full h-full flex flex-col items-center justify-center text-center p-8 space-y-4">
-                  <Briefcase className="w-16 h-16 text-accent" />
-                  <p className="text-lg text-foreground">explore opportunities</p>
-                </div>
-              </Card>
-            </div>
-
-            <Card className="rounded-2xl bg-gradient-to-br from-coffee-light to-accent/30 overflow-hidden card-glow">
-              <div className="w-full h-full flex flex-col items-center justify-center text-center p-12 space-y-6">
-                <Calendar className="w-20 h-20 text-accent" />
-                <div className="space-y-2">
-                  <p className="text-2xl font-semibold text-foreground">seamless scheduling</p>
-                  <p className="text-muted-foreground">manage all your coffee chats effortlessly</p>
-                </div>
-              </div>
+          <div className="max-w-5xl mx-auto">
+            <Card className="rounded-2xl overflow-hidden card-glow border-border/40">
+              <img 
+                src={productPreview} 
+                alt="CoffeeChat application interface preview" 
+                className="w-full h-auto"
+              />
             </Card>
           </div>
         </div>
