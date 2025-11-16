@@ -11,6 +11,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import { CalendarView } from "@/components/meetings/CalendarView";
 
 interface Meeting {
   id: string;
@@ -184,6 +185,9 @@ export default function Meetings() {
             <TabsTrigger value="upcoming" className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground">
               upcoming ({upcomingMeetings.length})
             </TabsTrigger>
+            <TabsTrigger value="calendar" className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground">
+              calendar
+            </TabsTrigger>
             <TabsTrigger value="history" className="data-[state=active]:bg-accent data-[state=active]:text-accent-foreground">
               history ({pastMeetings.length})
             </TabsTrigger>
@@ -204,6 +208,10 @@ export default function Meetings() {
                 ))}
               </div>
             )}
+          </TabsContent>
+
+          <TabsContent value="calendar">
+            <CalendarView meetings={meetings} />
           </TabsContent>
 
           <TabsContent value="history" className="space-y-4">
