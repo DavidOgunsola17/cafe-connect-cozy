@@ -2,7 +2,6 @@ import { Coffee, Sparkles, Calendar, Target, ArrowRight, Users, Briefcase } from
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Link } from "react-router-dom";
-import heroBackground from "@/assets/hero-background.jpg";
 import productPreview from "@/assets/product-preview.jpg";
 import featureAiMatching from "@/assets/feature-ai-matching.jpg";
 import featureScheduler from "@/assets/feature-scheduler.jpg";
@@ -35,12 +34,7 @@ export default function Index() {
 
       {/* Hero Section */}
       <section 
-        className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 lg:px-8 overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url(${heroBackground})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+        className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-4 lg:px-8 overflow-hidden bg-gradient-to-b from-background via-background to-card/30"
       >
         <div className="container mx-auto max-w-6xl relative z-10">
           <div className="text-center space-y-8 animate-fade-in">
